@@ -1,2 +1,25 @@
+### 
 
-GET http://localhost:4004/odata/v4/main/Students
+GET http://localhost:4004/odata/v4/main/getStudents
+
+###
+
+POST http://localhost:4004/odata/v4/main/Students
+content-type: application/json
+
+{
+    "email": "teste@testes.com",
+    "first_name": "Lucas",
+    "last_name": "Santos",
+    "create_date": "2024-10-16"
+}
+
+### 
+
+POST http://localhost:4004/odata/v4/main/updateStudents
+content-type: application/json
+
+{
+    "email": "teste@testes.com",
+    "first_name": "João"
+}

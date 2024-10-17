@@ -3,6 +3,10 @@ using from '../app/services';
 
 service mainService {
 
-    @readonly entity Students as projection on school.students;
+    @readonly
+    entity getStudents    as projection on school.students;
+
+    @updateonly
+    entity updateStudents as projection on school.students;
 
 }
