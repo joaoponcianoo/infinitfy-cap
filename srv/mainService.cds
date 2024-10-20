@@ -9,4 +9,10 @@ service mainService {
     @updateonly
     entity updateStudents as projection on school.students;
 
+    @insertonly
+    entity insertStudents as projection on school.students;
+
+    @deleteonly
+    entity deleteStudents as projection on school.students;
+
 }

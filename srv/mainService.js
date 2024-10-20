@@ -47,4 +47,54 @@ export const mainService = (srv) => {
       console.log(result);
       return result;
   });
+
+  srv.on("CREATE", "insertStudents", async (req, res) => {
+    let result = await cds
+      .transaction(req)
+      .run(
+        INSERT.into("sap_cap_school_students")
+        .entries(req.data)
+      )
+      .then((resolve, reject) => {
+        if (typeof resolve !== "undefined" && resolve >= 1) {
+          return req.data;
+        }
+
+        console.log("Data insertion failed. Please try again.");
+        return null;
+      })
+      .catch((err) => {
+        console.log("Error" + err);
+        return err;
+      });
+
+      console.log(result);
+      return result;
+  });
+
+  srv.on("CREATE", "deleteStudents", async (req, res) => {
+    let result = await cds
+      .transaction(req)
+      .run(
+        DELETE.from("sap_cap_school_students")
+        .where({
+          email: req.data.email
+        })
+      )
+      .then((resolve, reject) => {
+        if (typeof resolve !== "undefined" && resolve >= 1) {
+          return req.data;
+        }
+
+        console.log("No records were deleted.");
+        return null;
+      })
+      .catch((err) => {
+        console.log("Error" + err);
+        return err;
+      });
+
+      console.log(result);
+      return result;
+  });
 };

@@ -23,3 +23,13 @@ content-type: application/json
     "email": "teste@testes.com",
     "first_name": "João"
 }
+
+###
+
+POST http://localhost:4004/odata/v4/main/insertStudents
+content-type: application/json
+
+{
+    "email": "teste3@testes3.com",
+    "first_name": "José"
+}
