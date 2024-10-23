@@ -1,18 +1,31 @@
 using sap.cap.school as school from '../db/schema';
 using from '../app/services';
 
-service mainService {
+service mainService @(path: 'view') {
 
     @readonly
-    entity getStudents    as projection on school.students;
+    entity GetStudents    as projection on school.students;
 
     @updateonly
-    entity updateStudents as projection on school.students;
+    entity UpdateStudents as projection on school.students;
 
     @insertonly
-    entity insertStudents as projection on school.students;
+    entity InsertStudents as projection on school.students;
 
     @deleteonly
-    entity deleteStudents as projection on school.students;
+    entity DeleteStudents as projection on school.students;
 
+    entity Students as projection on school.students;
+
+}
+
+extend service mainService with {
+
+    @readonly
+    entity View as projection on school.students {
+        *,
+        first_name || ' ' || last_name as full_name: String
+    } excluding {
+        create_date
+    }
 }

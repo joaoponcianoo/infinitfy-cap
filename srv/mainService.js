@@ -2,7 +2,7 @@ import cds from "@sap/cds";
 const students = cds.entities("sap.cap.school");
 
 export const mainService = (srv) => {
-  srv.on("READ", "getStudents", async (req) => {
+  srv.on("READ", "GetStudents", async (req) => {
     try {
       let filterData = req.data;
 
@@ -20,7 +20,7 @@ export const mainService = (srv) => {
   //     return data.map(d => { console.log(d) })
   // });
 
-  srv.on("CREATE", "updateStudents", async (req, res) => {
+  srv.on("CREATE", "UpdateStudents", async (req, res) => {
     let firstName = req.data.first_name;
     let email = req.data.email;
 
@@ -48,7 +48,7 @@ export const mainService = (srv) => {
       return result;
   });
 
-  srv.on("CREATE", "insertStudents", async (req, res) => {
+  srv.on("CREATE", "InsertStudents", async (req, res) => {
     let result = await cds
       .transaction(req)
       .run(
@@ -72,7 +72,7 @@ export const mainService = (srv) => {
       return result;
   });
 
-  srv.on("CREATE", "deleteStudents", async (req, res) => {
+  srv.on("CREATE", "DeleteStudents", async (req, res) => {
     let result = await cds
       .transaction(req)
       .run(
